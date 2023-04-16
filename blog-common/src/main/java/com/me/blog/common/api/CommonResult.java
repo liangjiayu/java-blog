@@ -68,7 +68,6 @@ public class CommonResult<T> {
         return failed(ResultCode.FAILED);
     }
 
-
     public long getCode() {
         return code;
     }
