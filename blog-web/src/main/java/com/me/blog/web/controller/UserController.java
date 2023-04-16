@@ -21,4 +21,10 @@ public class UserController {
     public CommonResult list(UserPageDto userPageDto) {
         return CommonResult.success(this.userService.list(userPageDto));
     }
+
+    @RequestMapping(path = "/getUserList", method = RequestMethod.GET)
+    @ResponseBody
+    public CommonResult getUserList() {
+        return CommonResult.success(this.userService.getUserList());
+    }
 }

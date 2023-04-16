@@ -12,6 +12,8 @@ import com.me.blog.service.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService extends ServiceImpl<UserMapper, User> implements IUserService {
 
@@ -34,5 +36,10 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
     @Override
     public boolean update(UserDto userDto) {
         return false;
+    }
+
+    @Override
+    public List<User> getUserList() {
+        return this.userMapper.getUserList();
     }
 }
