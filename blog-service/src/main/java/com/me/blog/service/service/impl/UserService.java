@@ -9,6 +9,7 @@ import com.me.blog.dao.modal.User;
 import com.me.blog.service.dto.UserDto;
 import com.me.blog.service.dto.UserPageDto;
 import com.me.blog.service.service.IUserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,16 +31,28 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
 
     @Override
     public boolean create(UserDto userDto) {
-        return false;
+        User user = new User();
+        BeanUtils.copyProperties(userDto, user);
+        user.setId(null);
+
+        return this.userMapper.insert(user) > 0;
     }
 
     @Override
     public boolean update(UserDto userDto) {
-        return false;
+        User user = new User();
+        BeanUtils.copyProperties(userDto, user);
+
+        return this.userMapper.updateById(user) > 0;
     }
 
     @Override
-    public List<User> getUserList() {
-        return this.userMapper.getUserList();
+    public boolean delete(String id) {
+        return this.userMapper.deleteById(id) > 0;
+    }
+
+    @Override
+    public User getById(Long id) {
+        return this.userMapper.getById(id);
     }
 }

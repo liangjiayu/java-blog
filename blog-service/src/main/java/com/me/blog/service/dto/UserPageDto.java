@@ -1,9 +1,8 @@
 package com.me.blog.service.dto;
 
+import com.me.blog.common.dto.BasePage;
 import lombok.Data;
 
 @Data
-public class UserPageDto {
-    Integer pageNum = 1;
-    Integer pageSize = 10;
+public class UserPageDto extends BasePage {
 }

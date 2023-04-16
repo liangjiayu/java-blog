@@ -14,5 +14,7 @@ public interface IUserService {
 
     boolean update(UserDto userDto);
 
-    List<User> getUserList();
+    boolean delete(String id);
+
+    User getById(Long id);
 }

@@ -1,13 +1,14 @@
 package com.me.blog.web.controller;
 
 import com.me.blog.common.api.CommonResult;
+import com.me.blog.service.dto.UserDto;
 import com.me.blog.service.dto.UserPageDto;
 import com.me.blog.service.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/user")
@@ -22,9 +23,42 @@ public class UserController {
         return CommonResult.success(this.userService.list(userPageDto));
     }
 
-    @RequestMapping(path = "/getUserList", method = RequestMethod.GET)
+    @RequestMapping(path = "/create", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult getUserList() {
-        return CommonResult.success(this.userService.getUserList());
+    public CommonResult create(@RequestBody @Valid UserDto userDto) {
+        boolean result = this.userService.create(userDto);
+        if (result) {
+            return CommonResult.success(null);
+        } else {
+            return CommonResult.failed();
+        }
+    }
+
+    @RequestMapping(path = "/update", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult update(@RequestBody UserDto userDto) {
+        boolean result = this.userService.update(userDto);
+        if (result) {
+            return CommonResult.success(null);
+        } else {
+            return CommonResult.failed();
+        }
+    }
+
+    @RequestMapping(path = "/delete", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult delete(@RequestParam("id") String id) {
+        boolean result = this.userService.delete(id);
+        if (result) {
+            return CommonResult.success(null);
+        } else {
+            return CommonResult.failed();
+        }
+    }
+
+    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public CommonResult getInfo(@PathVariable("id") Long id) {
+        return CommonResult.success(this.userService.getById(id));
     }
 }
