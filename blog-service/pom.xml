@@ -8,7 +8,7 @@
     <packaging>jar</packaging>
 
     <name>blog-service</name>
-    <description>service 模块，对应 MVC 的 M 概念，存放核心业务逻辑代码</description>
+    <description>blog-service for blog</description>
 
     <parent>
         <groupId>com.me</groupId>
@@ -20,6 +20,10 @@
         <dependency>
             <groupId>com.me</groupId>
             <artifactId>blog-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.me</groupId>
+            <artifactId>blog-dao</artifactId>
         </dependency>
     </dependencies>
 

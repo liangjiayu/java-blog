@@ -15,6 +15,7 @@
         <module>blog-start</module>
         <module>blog-web</module>
         <module>blog-service</module>
+        <module>blog-dao</module>
     </modules>
 
     <parent>
@@ -64,6 +65,11 @@
             <dependency>
                 <groupId>com.me</groupId>
                 <artifactId>blog-service</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.me</groupId>
+                <artifactId>blog-dao</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
             <!--集成druid连接池-->
